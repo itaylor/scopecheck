@@ -1,0 +1,37 @@
+{
+  "name": "scopecheck",
+  "version": "0.0.1",
+  "description": "A flexible tool for finding global scope leaks via static analysis.",
+  "main": "index.js",
+  "dependencies": {
+    "esprima": "^2.2.0",
+    "commander": "^2.8.1",
+    "escope": "^1.0.3",
+    "colors": "^1.1.0",
+    "glob": "^5.0.6",
+    "estraverse": "^4.1.0",
+    "string.prototype.endswith": "^0.2.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-mocha": "^2.1.0",
+    "gulp-util": "^3.0.4",
+    "mocha": "^2.2.5",
+    "qunit-mocha-ui": "0.0.5"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "keywords": [
+    "static",
+    "analyis",
+    "global",
+    "scope",
+    "leak"
+  ],
+  "bin": {
+    "scopecheck": "cli.js"
+  },
+  "author": "Ian Taylor",
+  "license": "ISC"
+}

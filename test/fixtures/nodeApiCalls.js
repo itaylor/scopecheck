@@ -1,4 +1,3 @@
-var myFolder = __dirname + './something/';
-module.exports = "test";
-process.exit(1000);
+module.exports = __dirname + './something/';
 require('fs');
+process.exit(1000);

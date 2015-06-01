@@ -1,6 +1,6 @@
 var ScopeCheck = require('../index.js');
 
-test('basic test of missing refs', 8, function (){
+test('basic test of missing refs', 10, function (){
   var scopecheck = ScopeCheck();
   var file = __dirname + '/fixtures/basic.js';
 
@@ -9,19 +9,23 @@ test('basic test of missing refs', 8, function (){
 
   noErrors(output);
   var fileResults = output.results[file];
-  equal(fileResults.length, 3);
+  equal(fileResults.length, 4);
 
   equal(fileResults[0].name, 'functionThatIsntDefined');
   deepEqual(fileResults[0].loc, {start: {line:11, column:0}, end: {line:11, column:23}});
 
-  equal(fileResults[1].name, 'nestedvar');
-  deepEqual(fileResults[1].loc, {start: {line: 3, column: 2}, end: {line: 3, column: 11}});
+  equal(fileResults[1].name, 'me');
+  deepEqual(fileResults[1].loc, {start: {line: 12, column: 4}, end: {line: 12, column: 6}});
 
   equal(fileResults[2].name, 'nestedvar');
-  deepEqual(fileResults[2].loc, {start: {line: 6, column: 9}, end: {line: 6, column: 18}});
+  deepEqual(fileResults[2].loc, {start: {line: 3, column: 2}, end: {line: 3, column: 11}});
+
+  equal(fileResults[3].name, 'nestedvar');
+  deepEqual(fileResults[3].loc, {start: {line: 6, column: 9}, end: {line: 6, column: 18}});
+
 });
 
-test('basic test adding an allowed reference', 6, function (){
+test('basic test adding an allowed reference', 8, function (){
   var scopecheck = ScopeCheck();
   var file = __dirname + '/fixtures/basic.js';
 
@@ -33,13 +37,17 @@ test('basic test adding an allowed reference', 6, function (){
 
   noErrors(output);
   var fileResults = output.results[file];
-  equal(fileResults.length, 2);
+  equal(fileResults.length, 3);
 
-  equal(fileResults[0].name, 'nestedvar');
-  deepEqual(fileResults[0].loc, {start: {line: 3, column: 2}, end: {line: 3, column: 11}});
+  equal(fileResults[0].name, 'me');
+  deepEqual(fileResults[0].loc, {start: {line: 12, column: 4}, end: {line: 12, column: 6}});
 
   equal(fileResults[1].name, 'nestedvar');
-  deepEqual(fileResults[1].loc, {start: {line: 6, column: 9}, end: {line: 6, column: 18}});
+  deepEqual(fileResults[1].loc, {start: {line: 3, column: 2}, end: {line: 3, column: 11}});
+
+  equal(fileResults[2].name, 'nestedvar');
+  deepEqual(fileResults[2].loc, {start: {line: 6, column: 9}, end: {line: 6, column: 18}});
+
 });
 
 test('File with no undefined references has no results', 2, function (){

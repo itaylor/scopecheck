@@ -9,3 +9,4 @@ function toplevel(){
 }
 //call of an undefined function from global scope
 functionThatIsntDefined();
+var me = "anything";

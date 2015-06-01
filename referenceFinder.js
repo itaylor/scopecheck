@@ -4,38 +4,21 @@ var scopecore = require('./scopecore.js');
 var estraverse = require('estraverse');
 var fs = require('fs');
 
-
-function isUndefinedReference(ref, globalScope){
-  //This looks like a bug in escope... 
-  //ref.resolved is not defined when a var is declared in global scope.
-  // For instance, it won't detect foo as being resolved in the below code.
-  // var foo = 'a';
-  // function bar(){
-  //   return foo + 'b'
-  // }
-  // bar();
-  //TODO: PR to escope to fix the root cause of this bug
-  if(ref.resolved){
-    return false;
-  }
-  var variable;
-  if(variable = globalScope.set.get(ref.identifier.name)) {
-    ref.resolved = variable;
-    return false;
-  } 
-  return true;
-}
-
 function referenceFinder(files, predefVars, excludeExprs, reporter){
   predefVars = predefVars || [];
   excludeExprs = excludeExprs || [];
 
-  function findUndefinedReferences(scope, globalScope){
+  function findUndefinedReferences(scope){
     var refs = [];
     scope.references.forEach(function (ref){
-      if(isUndefinedReference(ref, globalScope) &&
-        predefVars.indexOf(ref.identifier.name) == -1){
-        refs.push(ref.identifier);
+      if(!ref.resolved && predefVars.indexOf(ref.identifier.name) == -1){
+        if(ref.identifier._parent.type === 'VariableDeclarator' && ref.from.type !== 'global'){
+          //Variable declarations in non global scope are ok,
+          //even though they're marked by escope as 
+          //not resolved.
+        }else{
+          refs.push(ref.identifier);  
+        }        
       }
     });
     return refs;

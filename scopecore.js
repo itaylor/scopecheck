@@ -19,7 +19,7 @@ function scopecore(js, opts){
     var scopeFns = Array.isArray(opts.scope) ? opts.scope : [opts.scope];
     scopeFns.forEach(function (scopeFn){
       scopes.forEach(function (scope){
-        var result = scopeFn(scope, scopes[0]);
+        var result = scopeFn(scope);
         if(result !== undefined && result !== null){
           refs = refs.concat(result);
         }

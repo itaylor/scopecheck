@@ -1,7 +1,23 @@
-var result = document.querySelector('div');
+(function (){
+  var myObj = setTimeout(function (){
+    document.querySelector('div');
+  });
 
-Element.prototype.getAttribute();
+  Element.prototype.getAttribute();
 
-location.href = 'http://foo.bar/';
+  location.href = 'http://foo.bar/';
 
-JSON.stringify(parseInt(eval('50')));
+  JSON.stringify(parseInt(eval('50')));
+
+})();
+
+// (function (){
+
+//   var foob = document.querySelector('div');
+
+//   Element.prototype.getAttribute();
+
+//   location.href = 'http://foo.bar/';
+
+//   JSON.stringify(parseInt(eval('50')));
+// })();

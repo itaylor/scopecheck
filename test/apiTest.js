@@ -1,5 +1,7 @@
 var ScopeCheck = require('../index.js');
 
+suite("Api Tests");
+
 test('basic test of missing refs', 10, function (){
   var scopecheck = ScopeCheck();
   var file = __dirname + '/fixtures/basic.js';

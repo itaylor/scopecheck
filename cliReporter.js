@@ -18,7 +18,7 @@ module.exports = function (opts){
         process.stdout.write(file); 
       } 
       process.stdout.write(' ' + colors.red('💩') + '\n');
-      console.error(err);
+      console.error(err.message, err);
     }
     else if((!results || results.length === 0) && opts.showNonErrorFiles){
       process.stdout.write(' ' + colors.green('✓') + '\n');

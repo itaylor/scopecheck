@@ -2,7 +2,6 @@
 var program = require('commander');
 var glob = require('glob');
 var scopecore = require('./scopecore.js');
-var predefReferences = require('./predefinedReferences.js');
 
 function collect(val, memo) {
   memo.push(val);
@@ -17,10 +16,10 @@ program
     program.fileglob = fileglob;
     program.files = glob.sync(fileglob);
   })
-  .option('-a, --add-predef-var [value]', 'adds a variable that should be considered as defined', collect, [])
-  .option('-r, --remove-predef-var [value]', 'remove this from the list of variables considered as defined', collect, [])
+  .option('-a, --add-predef-var <value>', 'adds a variable that should be considered as defined', collect, [])
+  .option('-r, --remove-predef-var <value>', 'remove this from the list of variables considered as defined', collect, [])
   .option('-p, --print-predef-vars', 'Prints all the built-in variables that are considered as defined')
-  .option('-e, --exclude [value]', 'A missing reference to exclude from the list of errors.', collect, [])
+  .option('-e, --exclude <value>', 'A missing reference to exclude from the list of errors.', collect, [])
   .option('-s, --suppress-non-errors', 'Suppress messages about each file processed.')
   .option('-n, --node-js-vars-only', 'Only add predefVars that are needed for nodes.js')
   .on('--help', function(){
@@ -41,7 +40,7 @@ program
 var ScopeCheck = require('./index.js');
 var scopecheck = ScopeCheck();
 if(program.nodeJsVarsOnly){
-  scopecheck.okRefs(scopecheck.predefinedReferences.node);
+  scopecheck.okRefs(ScopeCheck.predefinedReferences.node);
 }
 
 var okRefs = scopecheck.okRefs();
@@ -53,7 +52,7 @@ if(program.removePredefVar){
 }
 
 if(program.printPredefVars){
-  console.log(okRefs);
+  console.log(JSON.stringify(okRefs));
   process.exit(0);
 }
 

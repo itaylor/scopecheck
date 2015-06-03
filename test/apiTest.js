@@ -78,7 +78,7 @@ test('Removing console from the okRefs marks console.log as an undefined referen
   var fileResults = output.results[file];
   equal(fileResults.length, 1);
   equal(fileResults[0].name, 'console.log');
-  deepEqual(fileResults[0].loc, {start: {line: 13, column: 2}, end: {line: 13, column: 13}});
+  deepEqual(fileResults[0].loc, {start: {line: 15, column: 0}, end: {line: 15, column: 11}});
 });
 
 test('HTML specific references are allowed by default', 2, function (){

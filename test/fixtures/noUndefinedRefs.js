@@ -10,5 +10,6 @@
     myObj = 'blah';
   }
   toplevel();
-  console.log('console');
 })();
+
+console.log('console');

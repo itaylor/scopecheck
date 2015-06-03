@@ -56,8 +56,17 @@ scopecheck will scan the files for undefined references, (both usages and defini
         $ scopecheck -r console -e "console.error" "**/*.js"
 
 ### API Usage
+  
+Scopecheck can also be used programatically, and is rather flexible.
+    var ScopeCheck = require('scopecheck');
+    var sc = ScopeCheck();
 
+    var output = sc
+      .excludes(["$"])
+      .reporter(ScopeCheck.reporters.cli)
+      .run(["/path/to/file1.js", "/path/to/file2.js"])
 
+TODO: More API docs
 
     
 ### License

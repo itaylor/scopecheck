@@ -1,8 +1,9 @@
 {
   "name": "scopecheck",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A flexible tool for finding global scope leaks via static analysis.",
   "main": "index.js",
+  "repository": "https://github.com/itaylor/scopecheck",
   "dependencies": {
     "esprima": "^2.2.0",
     "commander": "^2.8.1",
@@ -33,5 +34,5 @@
     "scopecheck": "cli.js"
   },
   "author": "Ian Taylor",
-  "license": "ISC"
+  "license": "MIT"
 }
